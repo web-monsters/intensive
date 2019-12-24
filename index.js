@@ -52,10 +52,8 @@
 
 // let name = 'John';
 
-// let human = {
-// 	name: 'Miroslav',
-// 	age: 25,
-// }
+
+
 
 // function getType(vars) {
 // 	console.log(typeof vars);
@@ -116,6 +114,48 @@
 
 
 
+
+
+// console.log(vapeJuices);
+
+
+//- Нужно написать функцию, которая вернёт 
+//  массив отсутствующих в наличии предметов. 
+//  (Ей параметром передаётся весь список)
+
+// let getNotAvailableItem = function(vapeJuices) {
+// 	vapeJuices.forEach(function(item, index, array) {
+// 		if () {
+// 			item.available = false;
+// 			return item;
+// 		} else {
+// 			continue;
+// 		}	
+// 	})
+// };
+
+// getNotAvailableItem(vapeJuices);
+
+
+// let getUnavailableItems = function(items) {
+// 	let unavailables = vapeJuices.filter(function(item) {
+// 		return item.available === false;
+// 	})
+// 	return unavailables;
+// }
+
+// getUnavailableItems(vapeJuices);
+
+let human = {
+	name: 'Miroslav',
+	age: 20,
+	greetings: function() {
+		console.log('Hello yeah')
+	},
+	pets: ['kitska', 'Mishka', 'Lozhka', 'Krychka'],
+}
+
+
 let vapeJuices = [
   {
     brand: 'Smoky Mix',
@@ -142,7 +182,6 @@ let vapeJuices = [
     currency: 'UAH',
   },
   {
-    brand: 'Bevape',
     title: 'Cactus Lime',
     price: 65,
     available: false,
@@ -150,7 +189,6 @@ let vapeJuices = [
     currency: 'UAH',
   },
   {
-    brand: 'Smoky Mix',
     title: 'Solar Shock',
     price: 55,
     available: true,
@@ -158,7 +196,6 @@ let vapeJuices = [
     currency: 'UAH',
   },
   {
-    brand: 'Soft Vapor',
     title: 'Strawberry',
     price: 140,
     available: true,
@@ -175,32 +212,153 @@ let vapeJuices = [
   },
 ];
 
-// console.log(vapeJuices);
-
-
-//- Нужно написать функцию, которая вернёт 
-//  массив отсутствующих в наличии предметов. 
-//  (Ей параметром передаётся весь список)
-
-// let getNotAvailableItem = function(vapeJuices) {
-// 	vapeJuices.forEach(function(item, index, array) {
-// 		if () {
-// 			item.available = false;
-// 			return item;
-// 		} else {
-// 			continue;
-// 		}	
-// 	})
-// };
-
-// getNotAvailableItem(vapeJuices);
-
-
-let getUnavailableItems = function(items) {
-	let unavailables = vapeJuices.filter(function(item) {
-		return item.available === false;
-	})
-	return unavailables;
+let setUnknownBrand = function(catalog) {
+	catalog.forEach(function(item) {
+		if (!item.hasOwnProperty('brand')) {
+			Object.defineProperty(item, 'brand', {
+				enumerable: true,
+				value: 'Неизвестнейший бренд',
+			});
+		};
+	});
 }
+setUnknownBrand(vapeJuices);
+// - Необходимо спроектировать класс Catalog. 
+// Конструктор входным параметром принимает некий массив объектов (vapeJuices). 
+// У класса есть интерфейсные методы: 
+// + getAvaiableItems, (вовзращает массив предметов в наличии)
+// + getSortedFromHighToLowPrice, (возвращает массив отсортированных по цене от максимальной к минимальной)
+// + getSortedFromLowToHighPrice, (Так же, только наоборот)
+// + getHighestPriceItem, (возвращает самый дорогой предмет (объект))
+// + getLowestPriceItem, (так, же но минимальной цены)
+// + getCatalogName, (возвращает строку с названием каталога (Best Vape Juices!))
+// + getBrands (возвращает массив строк (названий брендов))
 
-getUnavailableItems(vapeJuices);
+// Создаём экземпляр класса (через оператор new), 
+// указываем ему параметром наш массив, 
+// и вызываем у него поочерёдно созданные методы (в консоль), 
+// которые отдадут нам нужные данные
+
+
+// function Catalog(vapeJuices) {
+// 	this.title = 'Best Vape Juices';
+// 	this.items = vapeJuices;
+
+// 	this.getCatalogName = function() {
+// 			return this.title;
+// 		};
+
+// 	this.getAvailableItems = function() {
+// 		return this.items.filter(function(item) {
+// 			return item.available;
+// 		})
+// 	};
+
+// 	this.getSortedFromHighToLowPrice = function() {
+// 		return this.items.slice().sort(function(a,b) {
+// 			return b.price - a.price;
+// 		})
+// 	};
+
+// 	this.getSortedFromLowToHighPrice = function() {
+// 		return this.items.slice().sort(function(a,b) {
+// 			return a.price - b.price;
+// 		})
+// 	};
+
+// 	this.getHighestPriceItem = function() {
+// 		let highestPriceItem = this.items.slice().sort(function(a, b) {
+// 			return b.price - a.price;
+// 		})
+
+// 		return highestPriceItem[0];
+// 	};
+
+// 	this.getLowestPriceItem = function() {
+// 		let lowestPriceItem = this.items.slice().sort(function(a, b) {
+// 			return a.price - b.price;
+// 		})
+// 		return lowestPriceItem[0];
+// 	};
+
+// 	this.getBrands = function() {
+// 		// return this.items.map(function(item) {
+// 		// 	return item.brand;
+// 		// })
+// 		return this.items
+// 			.map(function(item) {
+// 				return item.brand
+// 			})
+// 			.filter((item, index, array) =>array.inndexOf(item) === index;
+
+
+// 	};
+// }
+
+// let vapeCatalog = new Catalog(vapeJuices);
+
+// console.log('Sorted from Low to High: ',vapeCatalog.getSortedFromLowToHighPrice());
+// console.log('Sorted from High to Low: ',vapeCatalog.getSortedFromHighToLowPrice());
+// console.log('Available items: ',vapeCatalog.getAvailableItems());
+// console.log('Highest price item: ',vapeCatalog.getHighestPriceItem());
+// console.log('Lowest price item: ',vapeCatalog.getLowestPriceItem());
+// console.log('Brand list: ', vapeCatalog.getBrands());
+
+
+
+//- Нужно написать функцию, которая вернёт сумму всех переданных
+// ей аргументов (n штук), если аргумент не число - 
+//просто пропустит его
+
+
+
+// function summArguments() {
+// 	let arrArg = Array.from(arguments);
+
+// 	let result = 0;
+// 	for(let i = 0; i < arrArg.length; i++) {
+// 		result += arrArg[i];
+// 	}
+// 	return result;
+// }
+
+
+// console.log(summArguments(1,2,3,5,6,7));
+
+// defineProperty
+// hasOwnProperty
+// create
+
+
+
+// Object.defineProperty(human, 'name', {
+// 	enumerable: false,
+// 	writable: false,
+// 	value: 'Myra',
+// });
+
+// console.log(human);
+
+// console.log(human.hasOwnProperty('age'));
+
+
+
+const woman =  {
+	legs: 2,
+	hair: 'red',
+	titties: 'nice',
+	greeting: function() {
+		console.log('ёп твою за ногу, где ты был всю ночь')
+	},
+ };
+
+const {greeting, hair, titties, legs} = woman;
+console.log(titties);
+
+
+
+
+
+
+
+
