@@ -325,12 +325,13 @@ setUnknownBrand(vapeJuices);
 
 // console.log(summArguments(1,2,3,5,6,7));
 
-// defineProperty
-// hasOwnProperty
-// create
+
+// defineProperty (дескриптор)
+// hasOwnProperty (проверка на то, есть ли у объекта такое свойство)
+// create ()
 
 
-
+// 
 // Object.defineProperty(human, 'name', {
 // 	enumerable: false,
 // 	writable: false,
@@ -342,18 +343,64 @@ setUnknownBrand(vapeJuices);
 // console.log(human.hasOwnProperty('age'));
 
 
+// ДЕСТРУКТУРИЗАЦИЯ
+// const woman =  {
+// 	legs: 2,
+// 	hair: 'red',
+// 	titties: 'nice',
+// 	greeting: function() {
+// 		console.log('ёп твою за ногу, где ты был всю ночь')
+// 	},
+//  };
+// const {greeting, hair, titties, legs} = woman;
+// console.log(titties);
 
-const woman =  {
-	legs: 2,
-	hair: 'red',
-	titties: 'nice',
-	greeting: function() {
-		console.log('ёп твою за ногу, где ты был всю ночь')
-	},
- };
 
-const {greeting, hair, titties, legs} = woman;
-console.log(titties);
+// function User (name, id, isAdmin) {
+// 	this.name = name;
+// 	this.id = id;
+// 	this.greetings = function() {
+// 		console.log('Привет! Меня зовут ' + this.name);
+// 	}
+// }
+
+// let Anton = new User('Anton', 1);
+
+// console.log(Anton);
+// Anton.greetings();
+
+
+// Привязка контекста вызова
+
+// let user = {
+// 	name: 'John'
+// }
+
+// function sayName() {
+// 	console.log(this);
+// }
+
+
+// // console.log(sayName.call(user));
+// console.log(sayName.apply(user));
+
+
+
+function random(n) {
+	console.log(Math.random(n));
+}
+
+random(10);
+
+
+
+
+
+
+
+
+
+
 
 
 
