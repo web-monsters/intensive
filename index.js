@@ -385,21 +385,24 @@ setUnknownBrand(vapeJuices);
 // console.log(sayName.apply(user));
 
 
+// let getRandom = function () {
+// 	return Math.round(Math.random() * 100);
+// }
 
-function random(n) {
-	console.log(Math.random(n));
+let arr = [];
+
+// let pushRandomToArr = function(arr) {
+// 	for (let i = 0; i < 50; i++) {
+// 		arr.push(Math.round(Math.random() * 100));
+// 	}
+// 	return 
+// }
+
+for (let i = 0; i < 50; i++) {
+	arr.push(Math.round(Math.random() * 100));
 }
 
-random(10);
-
-
-
-
-
-
-
-
-
+console.log(arr);
 
 
 
