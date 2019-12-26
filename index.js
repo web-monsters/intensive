@@ -389,23 +389,110 @@ setUnknownBrand(vapeJuices);
 // 	return Math.round(Math.random() * 100);
 // }
 
-let arr = [];
+// let arr = [];
 
-// let pushRandomToArr = function(arr) {
-// 	for (let i = 0; i < 50; i++) {
-// 		arr.push(Math.round(Math.random() * 100));
-// 	}
-// 	return 
+// // let pushRandomToArr = function(arr) {
+// // 	for (let i = 0; i < 50; i++) {
+// // 		arr.push(Math.round(Math.random() * 100));
+// // 	}
+// // 	return 
+// // }
+
+// for (let i = 0; i < 50; i++) {
+// 	arr.push(Math.round(Math.random() * 100));
 // }
 
-for (let i = 0; i < 50; i++) {
-	arr.push(Math.round(Math.random() * 100));
-}
-
-console.log(arr);
+// console.log(arr);
 
 
 
+
+// let fruits = ['Киви', 'Апельсин', 'Гранат', 'Груша'];
+
+// class Person (fruits){
+
+// 	this.fruits = fruits;
+
+// 	set items(fruits) {
+// 		fruits.push()
+// 	}
+
+// 	transfer(fruits) {
+// 		fruits.pop()
+// 	}
+
+// }
+
+// let person1 = new Person(fruits);
+
+// console.log(person1);
+
+//Нужно будет создать класс, у которого будет сеттер
+
+
+// - Необходимо создать 2 экземпляра на основе класса Person, 
+// который содержит в виде свойства массив фруктов(строками), 
+// методы передать, и сеттер. Это массив передаётся параметром при создании экземпляра. 
+// Сеттер добавляет в массив новые элементы. Сеттер эти новые элементы так же берёт параметром в виде массива. 
+// Метод передать удаляет из текущего массива в нашем экземпляре указанные элементы и возвращает массив вырезанных элементов. 
+// Далее один экземпляр передаёт другому 2 фрукта в виде массива (методом передать), который сетится сеттером второго экземлпяра внутрь себя.
+
+
+// класс Персон (айтемы)
+//   + айтемы = айтемы
+//   + передатьАйтемс(айтемс)
+//   + сетАйтемс(айтемс)
+
+// персон1 = нью Персон ([киви, апельсин, гранат, яблоко])
+// персон2 = нью Персон ([груша, слива, манго])
+
+// персон2.сетАйтемс(персон1.передатьАйтемс([киви, гранат]))
+
+// в консоль(персон1.айтемы) // [апельсин, яблоко]
+// в консоль(персон2.айтемы) // [груша, слива, манго, киви, гранат]
+
+
+// Массив фруктов
+let items = ['Киви', 'Апельсин', 'Гранат', 'Груша'];
+
+// Класс Person
+function Person (items) {
+	this.items = items;
+
+	//Метод для добавления фруктов в массив
+	this.setItems = function(addItems) {
+		addItems.forEach((item) => {
+			this.items.push(item);
+		});
+	};
+
+	//Метод для передачи фруктов из массива
+	this.transfer = function(del) {
+		let deleted = this.items.splice(del);
+
+		return deleted;
+	}
+};
+
+//Создание экземпляров класса Person
+let person1 = new Person(items);
+let person2 = new Person(items);
+
+//Массивы с одинаковым количеством фруктов
+console.log(person1.items);
+console.log(person2.items);
+
+//Достали 4 фрукта из массива фруктов person2 и передали их первому person
+person1.setItems(person2.transfer(2));
+
+console.log(person1.items);
+console.log(person2.items);
+
+// console.log(person2.items);
+// person2.transfer(4);
+// person2.setItems(person1.transfer());
+
+// console.log(person2.items);
 
 
 
